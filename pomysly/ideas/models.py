@@ -17,4 +17,4 @@ class Idea(models.Model):
 
 class Votes(models.Model):
     idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
-    reason = models.TextField
+    reason = models.TextField()
