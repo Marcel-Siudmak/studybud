@@ -12,7 +12,7 @@ IDEA_STATUS = (
 class Idea(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    youtube = models.URLField()
+    youtube = models.URLField(null=True, blank=True)
     status = models.CharField(choices=IDEA_STATUS, max_length=35, default='pending')
 
 class Votes(models.Model):
