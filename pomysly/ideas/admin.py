@@ -4,11 +4,17 @@ from .models import Idea, Vote
 # Register your models here.
 
 
+class VoteInline(admin.StackedInline):
+    model = Vote
+
 @admin.register(Idea)
 class IdeaAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_display = ['id','title', 'status', 'showYouTubeURL']
     list_filter = ['status']
+    inlines = [
+        VoteInline
+    ]
 
     def showYouTubeURL(self, obj):
         if obj.youtube is not None:
@@ -17,6 +23,7 @@ class IdeaAdmin(admin.ModelAdmin):
             return ''
 
     showYouTubeURL.short_description = 'YouTube URL'
+
 
 @admin.register(Vote)
 class VoteAdmin(admin.ModelAdmin):
